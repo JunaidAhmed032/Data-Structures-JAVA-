@@ -1,0 +1,127 @@
+package circularlist;
+
+import java.util.Scanner;
+
+/**
+ *
+ * @author Junaid Ahmed
+ */
+public class Single_List {
+public static class SL{
+    Node head;
+   // Node tail;
+    public class Node{
+        int data;
+        Node next;
+    }
+    //==================INSERT A VALUE AT THE END===================================================================================================================
+    void insert(int data){
+        Node node=new Node();
+        if(head==null){
+            head=node;
+            head.data=data;
+            System.out.println("Given value i.e '"+data+"' added");
+         //   head.next=tail;
+         //   tail.next=head;
+         //   tail.data=0;
+        }
+        else{
+            Node jet=head;
+            while(jet.next!=null){
+                jet=jet.next;
+            }
+            jet.next=node;
+            node.data=data;
+         // node.next=head;
+         System.out.println("Given value i.e '"+data+"' added");
+        }
+    }
+    //==============INSERT A VALUE AT THE GIVEN INDEX==============================================================================================================================================
+    void insertAt(int index,int data){
+        int count=1;
+        Node node=new Node();
+        Node jet=head;
+        Node prev=new Node();
+        while(jet.next!=null&&count!=index){
+            prev=jet;
+            jet=jet.next;
+            count++;
+        }
+        prev.next=node;
+        node.data=data;
+        node.next=jet;
+        if(count==index){ System.out.println("the given value '"+data+"' has been added to the index '"+index+"'");}
+        if(jet.next==null){System.out.println("'-ERROR-'\nVALUE= '"+data+"' INDEX= '"+index+"'\nthis value wasnt added\n=====> REASON: The list size maybe smaller than the given index number <=====");}
+    }
+    //================================================================================================================================================================================================================================
+
+    //====================================================================================================================================================================================================================================================
+    //===============SHOW US THE DATA=====================================================================================================================================================================================================================
+    void show(){
+        int index=1;
+        Node jet=head;
+        System.out.println("Here is the data you asked for:");
+        while(jet.next!=null){
+            System.out.println("Value "+index+"="+jet.data);
+            jet=jet.next;
+            index++;
+        }
+        System.out.println("Value "+index+"="+jet.data);
+    }
+   //=======================================================================================================================================================================================================================================
+    void Swap(int A,int B){
+        Node jetA=head;
+        Node prevA=null;
+        if(A==B){return;}
+        while(jetA.next!=null&&jetA.data!=A){
+        prevA=jetA;
+        jetA=jetA.next;
+        }
+        Node jetB=head;
+        Node prevB=null;
+        while(jetB.next!=null&&jetB.data!=B){
+        prevB=jetB;
+        jetB=jetB.next;
+        }
+         if (jetA == null || jetB == null) 
+            return; 
+  
+        
+        if (prevA != null) 
+            prevA.next = jetB; 
+        else 
+            head = jetB; 
+  
+ 
+        if (prevB != null) 
+            prevB.next = jetA; 
+        else  
+            head = jetA; 
+  
+       
+        Node temp = jetA.next; 
+        jetA.next = jetB.next; 
+        jetB.next = temp; 
+    } 
+}
+    public static void main(String[] args) {
+        Scanner s=new Scanner(System.in);
+        SL list=new SL();
+        list.insert(1);
+        list.insert(2);
+        list.insert(3);
+        list.insert(4);
+        list.insert(5);
+        list.insert(6);
+        list.insert(7);
+        list.insert(8);
+        list.insert(9);
+        list.insert(10);
+            list.show();
+            list.Swap(4, 7);
+            list.show();
+           
+        
+    }
+    
+}
